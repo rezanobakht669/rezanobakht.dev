@@ -1,0 +1,32 @@
+---
+const { title, lang = 'en', description = '' } = Astro.props;
+const fa = lang === 'fa';
+---
+<!doctype html>
+<html lang={lang} dir={fa ? 'rtl' : 'ltr'}>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  {fa && <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" />}
+  <style is:global>
+    :root { --bg:#fff; --fg:#1a1a1a; --muted:#666; --accent:#1f4e79; }
+    @media (prefers-color-scheme: dark) { :root { --bg:#111; --fg:#e8e8e8; --muted:#999; --accent:#7fb3e6; } }
+    body { background:var(--bg); color:var(--fg); max-width:680px; margin:0 auto; padding:40px 16px;
+           font:17px/1.7 system-ui, sans-serif; }
+    html[lang=fa] body { font-family: Vazirmatn, system-ui, sans-serif; }
+    a { color:var(--accent); }
+    nav { display:flex; gap:16px; margin-bottom:32px; }
+    .muted { color:var(--muted); font-size:.9em; }
+    pre { overflow-x:auto; padding:12px; background:#8881; direction:ltr; }
+    ul.posts { list-style:none; padding:0; } ul.posts li { margin-bottom:12px; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/">Home</a><a href="/fa/">فارسی</a><a href="/Reza_Nobakht_Resume.pdf">Resume</a>
+  </nav>
+  <slot />
+</body>
+</html>

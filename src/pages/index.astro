@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro';
+const posts = Object.values(import.meta.glob('./en/*.md', { eager: true }))
+  .sort((a, b) => b.frontmatter.date.localeCompare(a.frontmatter.date));
+---
+<Base title="Reza Nobakht" description="CTO and backend engineer. Laravel, DevOps, AI engineering.">
+  <h1>Reza Nobakht</h1>
+  <p>CTO at a cross-border payments company. 8+ years building and running production systems in Laravel/PHP:
+     zero-downtime Laravel 5→13 upgrade, uptime 96%→99%, active-passive failover, CI/CD.
+     Now shipping LLM features in production: tool-calling chatbot, AI ticket triage, LLM-as-judge reviews, AI code review in CI.</p>
+  <p><a href="https://www.linkedin.com/in/reza-nobakht">LinkedIn</a> · <a href="/Reza_Nobakht_Resume.pdf">Resume (PDF)</a></p>
+  <h2>Writing</h2>
+  {posts.length ? (
+    <ul class="posts">{posts.map(p => <li><a href={p.url}>{p.frontmatter.title}</a> <span class="muted">{p.frontmatter.date}</span></li>)}</ul>
+  ) : <p class="muted">First posts coming soon.</p>}
+</Base>

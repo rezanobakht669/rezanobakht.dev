@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+const posts = Object.values(import.meta.glob('./*.md', { eager: true }))
+  .sort((a, b) => b.frontmatter.date.localeCompare(a.frontmatter.date));
+---
+<Base title="رضا نوبخت" lang="fa" description="تجربه‌های ۸ سال بک‌اند، DevOps و هوش مصنوعی">
+  <h1>رضا نوبخت</h1>
+  <p>تجربه‌های واقعی از ۸ سال ساخت و نگهداری سیستم‌های پروداکشن: لاراول، دیتابیس، زیرساخت، امنیت و هوش مصنوعی.</p>
+  {posts.length ? (
+    <ul class="posts">{posts.map(p => <li><a href={p.url}>{p.frontmatter.title}</a> <span class="muted">{p.frontmatter.date}</span></li>)}</ul>
+  ) : <p class="muted">اولین پست‌ها به‌زودی.</p>}
+</Base>
