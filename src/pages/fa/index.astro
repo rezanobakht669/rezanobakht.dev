@@ -1,12 +1,28 @@
 ---
-import Base from '../../layouts/Base.astro';
+import Home from '../../layouts/Home.astro';
 const posts = Object.values(import.meta.glob('./*.md', { eager: true }))
   .sort((a, b) => b.frontmatter.date.localeCompare(a.frontmatter.date));
+const t = {
+  title: 'رضا نوبخت · CTO، مهندس بک‌اند و هوش مصنوعی',
+  description: 'تجربه‌های واقعی از لاراول در مقیاس، زیرساخت و هوش مصنوعی در پروداکشن.',
+  name: 'رضا نوبخت',
+  role: 'CTO · Backend & AI engineer · Laravel / PHP',
+  lead: 'مسئول فنی یک پلتفرم پرداخت بین‌المللی‌ام: معماری، زیرساخت و تیم شش‌نفره‌ای که می‌سازدش. این روزها LLM می‌برم توی پروداکشن: ایجنت با tool calling، دسته‌بندی هوشمند تیکت، ارزیابی با LLM-as-judge. اینجا تجربه‌هام رو می‌نویسم.',
+  ctaWriting: 'نوشته‌ها', ctaResume: 'رزومه (PDF)',
+  stats: [
+    ['5.6→13', 'ارتقای لاراول بدون قطعی'],
+    ['96→99%', 'آپتایم پلتفرم'],
+    ['8+ yrs', 'لاراول/PHP در پروداکشن'],
+    ['6', 'نفر تیم فنی'],
+  ],
+  doLabel: '// کارهایی که می‌کنم',
+  cards: [
+    ['بک‌اند پرداخت', 'سیستم‌هایی که پول جابه‌جا می‌کنن: تراکنش، سازگاری داده، اتصال به سرویس‌ها.'],
+    ['زیرساخت و پایداری', 'Failover، CI/CD، Cloudflare، مانیتورینگ. بالا نگه داشتن سرویس وقتی اینترنت نیست.'],
+    ['هوش مصنوعی در پروداکشن', 'ایجنت، دسته‌بندی تیکت، eval و code review خودکار در CI. واقعی، نه دمو.'],
+  ],
+  writingLabel: '// نوشته‌ها',
+  empty: 'اولین پست‌ها به‌زودی.',
+};
 ---
-<Base title="رضا نوبخت" lang="fa" description="تجربه‌های ۸ سال بک‌اند، DevOps و هوش مصنوعی">
-  <h1>رضا نوبخت</h1>
-  <p>تجربه‌های واقعی از ۸ سال ساخت و نگهداری سیستم‌های پروداکشن: لاراول، دیتابیس، زیرساخت، امنیت و هوش مصنوعی.</p>
-  {posts.length ? (
-    <ul class="posts">{posts.map(p => <li><a href={p.url}>{p.frontmatter.title}</a> <span class="muted">{p.frontmatter.date}</span></li>)}</ul>
-  ) : <p class="muted">اولین پست‌ها به‌زودی.</p>}
-</Base>
+<Home t={t} lang="fa" posts={posts} />

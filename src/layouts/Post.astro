@@ -1,11 +1,23 @@
 ---
 import Base from './Base.astro';
 const { frontmatter } = Astro.props;
+const fa = frontmatter.lang === 'fa';
 ---
 <Base title={frontmatter.title} lang={frontmatter.lang} description={frontmatter.description}>
-  <article>
+  <article class="rise">
+    <a class="back" href={fa ? '/fa/#writing' : '/#writing'}>{fa ? '→ همه‌ی نوشته‌ها' : '← all writing'}</a>
     <h1>{frontmatter.title}</h1>
-    <p class="muted">{frontmatter.date}</p>
+    <p class="meta" dir="ltr">{frontmatter.date}</p>
     <slot />
   </article>
 </Base>
+
+<style>
+  article { max-width:680px; }
+  .back { font:13px var(--mono); color:var(--muted); }
+  h1 { font-size:clamp(30px, 5.5vw, 44px); font-weight:800; margin:18px 0 8px; }
+  .meta { font:13px var(--mono); color:var(--accent); margin:0 0 36px; text-align:start; }
+  article :global(h2) { font-size:23px; margin:44px 0 10px; }
+  article :global(h2)::before { content:'#'; color:var(--accent); font-family:var(--mono); margin-inline-end:10px; }
+  article :global(p) { margin:0 0 18px; }
+</style>
