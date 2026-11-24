@@ -5,6 +5,7 @@ export const person = {
   name: 'Reza Nobakht',
   alternateName: 'رضا نوبخت',
   url: 'https://rezanobakht.dev/',
+  image: 'https://rezanobakht.dev/reza.jpg',
   jobTitle: 'CTO',
   description: 'CTO and backend engineer: Laravel/PHP at scale, payments infrastructure, and LLM features in production.',
   knowsAbout: ['Laravel', 'PHP', 'Payments', 'Backend engineering', 'Infrastructure', 'Cloudflare', 'LLM agents', 'RAG', 'AI in production'],

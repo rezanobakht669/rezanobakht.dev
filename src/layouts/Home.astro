@@ -11,6 +11,7 @@ const schema = { '@context': 'https://schema.org', '@graph': [
 ---
 <Base title={t.title} lang={lang} description={t.description} schema={schema}>
   <section class="hero rise">
+    <img class="avatar" src="/reza.jpg" alt={t.name} width="112" height="112" />
     <p class="label">$ whoami<span class="cursor"></span></p>
     <h1>{t.name}</h1>
     <p class="role">{t.role}</p>
@@ -56,6 +57,8 @@ const schema = { '@context': 'https://schema.org', '@graph': [
 
 <style>
   .hero { padding:24px 0 8px; }
+  .avatar { display:block; width:112px; height:112px; border-radius:50%; object-fit:cover;
+            border:2px solid var(--accent); margin-bottom:18px; }
   .cursor { display:inline-block; width:8px; height:15px; margin-inline-start:6px; vertical-align:-2px;
             background:var(--accent); animation:blink 1.1s steps(1) infinite; }
   @keyframes blink { 50% { opacity:0; } }
