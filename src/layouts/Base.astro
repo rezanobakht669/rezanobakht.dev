@@ -1,7 +1,12 @@
 ---
-const { title, lang = 'en', description = '' } = Astro.props;
+const { title, lang = 'en', description = '', schema = null, type = 'website', noindex = false } = Astro.props;
 const fa = lang === 'fa';
-const canonical = new URL(Astro.url.pathname, Astro.site);
+const path = Astro.url.pathname;
+const canonical = new URL(path, Astro.site);
+// every page exists in both languages: / <-> /fa/, /en/x/ <-> /fa/x/
+const enPath = fa ? (path === '/fa/' ? '/' : path.replace('/fa/', '/en/')) : path;
+const faPath = fa ? path : (path === '/' ? '/fa/' : path.replace('/en/', '/fa/'));
+const og = new URL('/og.png', Astro.site);
 ---
 <!doctype html>
 <html lang={lang} dir={fa ? 'rtl' : 'ltr'}>
@@ -11,10 +16,23 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   <title>{title}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
+  {noindex ? <meta name="robots" content="noindex" /> : <>
+    <link rel="alternate" hreflang="en" href={new URL(enPath, Astro.site)} />
+    <link rel="alternate" hreflang="fa" href={new URL(faPath, Astro.site)} />
+    <link rel="alternate" hreflang="x-default" href={new URL(enPath, Astro.site)} />
+  </>}
+  <meta name="author" content="Reza Nobakht" />
+  <meta property="og:type" content={type} />
+  <meta property="og:site_name" content="Reza Nobakht" />
+  <meta property="og:locale" content={fa ? 'fa_IR' : 'en_US'} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:url" content={canonical} />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content={og} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content={og} />
+  <link rel="sitemap" href="/sitemap.xml" />
+  {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
   <meta name="theme-color" content="#0a0b0d" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230a0b0d'/><text x='16' y='22' font-family='monospace' font-size='16' font-weight='700' fill='%2334d399' text-anchor='middle'>RN</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />

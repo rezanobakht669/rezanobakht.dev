@@ -1,13 +1,29 @@
 ---
 import Base from './Base.astro';
+import { person } from '../person.js';
 const { frontmatter } = Astro.props;
 const fa = frontmatter.lang === 'fa';
+const url = new URL(Astro.url.pathname, Astro.site).href;
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: frontmatter.title,
+  description: frontmatter.description,
+  datePublished: frontmatter.date,
+  dateModified: frontmatter.updated ?? frontmatter.date,
+  inLanguage: frontmatter.lang,
+  url,
+  mainEntityOfPage: url,
+  image: new URL('/og.png', Astro.site).href,
+  author: person,
+  publisher: { '@id': person['@id'] },
+};
 ---
-<Base title={frontmatter.title} lang={frontmatter.lang} description={frontmatter.description}>
+<Base title={`${frontmatter.title} · Reza Nobakht`} lang={frontmatter.lang} description={frontmatter.description} schema={schema} type="article">
   <article class="rise">
     <a class="back" href={fa ? '/fa/#writing' : '/#writing'}>{fa ? '→ همه‌ی نوشته‌ها' : '← all writing'}</a>
     <h1>{frontmatter.title}</h1>
-    <p class="meta" dir="ltr">{frontmatter.date}</p>
+    <p class="meta" dir="ltr"><time datetime={frontmatter.date}>{frontmatter.date}</time> · {fa ? 'رضا نوبخت' : 'Reza Nobakht'}</p>
     <slot />
   </article>
 </Base>

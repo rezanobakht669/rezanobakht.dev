@@ -1,0 +1,20 @@
+# Reza Nobakht
+
+> CTO and backend engineer based in Shiraz, Iran. Runs engineering for a cross-border payments platform built on Laravel/PHP. Puts LLM features into production: tool-calling agents, AI ticket triage, LLM-as-judge evals. Open to remote backend / AI engineering roles.
+
+- Name: Reza Nobakht (Persian: رضا نوبخت)
+- Role: CTO, backend & AI engineer
+- Core stack: Laravel, PHP 8.3, MySQL/InnoDB, Redis, Cloudflare, CI/CD
+- Track record: upgraded a live payment platform from Laravel 5.6 to 13 (PHP 7.1 to 8.3) with zero downtime; raised uptime from 96% to 99%; leads a team of 6 engineers; 8+ years of production Laravel/PHP.
+
+## Profiles
+
+- [Website](https://rezanobakht.dev/)
+- [LinkedIn](https://www.linkedin.com/in/reza-nobakht)
+- [GitHub](https://github.com/rezanobakht669)
+- [Resume (PDF)](https://rezanobakht.dev/Reza_Nobakht_Resume.pdf)
+
+## Writing
+
+- [Laravel 5.6 to 13 on a live payment platform, with zero downtime](https://rezanobakht.dev/en/laravel-5-to-13/): ten framework upgrades, PHP 7.1 to 8.3, no maintenance window, and the seven lessons that made it work.
+- [Persian version](https://rezanobakht.dev/fa/laravel-5-to-13/)

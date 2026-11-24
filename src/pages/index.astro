@@ -3,7 +3,7 @@ import Home from '../layouts/Home.astro';
 const posts = Object.values(import.meta.glob('./en/*.md', { eager: true }))
   .sort((a, b) => b.frontmatter.date.localeCompare(a.frontmatter.date));
 const t = {
-  title: 'Reza Nobakht · CTO, backend & AI engineer',
+  title: 'Reza Nobakht · CTO, Laravel backend & AI engineer',
   description: 'CTO and backend engineer. Laravel at scale, infrastructure, and LLM features in production.',
   name: 'Reza Nobakht',
   role: 'CTO · Backend & AI engineer · Laravel / PHP',

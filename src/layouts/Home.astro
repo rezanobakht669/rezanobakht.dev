@@ -1,9 +1,15 @@
 ---
 // Shared home page for en and fa: same layout, strings passed in.
 import Base from './Base.astro';
+import { person } from '../person.js';
 const { t, lang, posts } = Astro.props;
+const schema = { '@context': 'https://schema.org', '@graph': [
+  person,
+  { '@type': 'WebSite', '@id': 'https://rezanobakht.dev/#website', url: 'https://rezanobakht.dev/', name: 'Reza Nobakht', inLanguage: ['en', 'fa'], publisher: { '@id': person['@id'] } },
+  { '@type': 'ProfilePage', url: new URL(Astro.url.pathname, Astro.site).href, inLanguage: lang, mainEntity: { '@id': person['@id'] } },
+]};
 ---
-<Base title={t.title} lang={lang} description={t.description}>
+<Base title={t.title} lang={lang} description={t.description} schema={schema}>
   <section class="hero rise">
     <p class="label">$ whoami<span class="cursor"></span></p>
     <h1>{t.name}</h1>
@@ -38,7 +44,7 @@ const { t, lang, posts } = Astro.props;
     {posts.length ? (
       <ul class="posts">
         {posts.map(p => (
-          <li><a href={p.url}>
+          <li><a href={`${p.url}/`}>
             <span class="t">{p.frontmatter.title}</span>
             <span class="d" dir="ltr">{p.frontmatter.date}</span>
           </a></li>
